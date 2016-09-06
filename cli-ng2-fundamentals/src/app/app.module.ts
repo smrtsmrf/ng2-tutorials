@@ -4,15 +4,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './ui/navbar/navbar.component';
-import { NotesComponent } from './containers/notes/notes.component';
-import { NoteCardComponent } from './ui/note-card/note-card.component';
-import { AuthComponent } from './containers/auth/auth.component';
-import { ColorPickerComponent } from './ui/color-picker/color-picker.component';
+import { MainComponent } from './containers';
+import { NavbarComponent } from './ui';
+import { NotesComponent } from './containers';
+import { NoteCardComponent } from './ui';
+import { AboutComponent } from './containers';
+import { AuthComponent } from './containers';
+import { ColorPickerComponent } from './ui';
+
+import { ApiService } from './services/api.service';
+import { NoteService } from './services/note.service';
+// import { StoreHelperService } from './services/store-helper.service';
+// import { providers } from './'
+// console.log(providers)
+// console.log([...providers])
+
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,  
+    MainComponent,
+    AboutComponent,    
     NavbarComponent,
     NotesComponent,
     NoteCardComponent,
@@ -22,9 +35,15 @@ import { ColorPickerComponent } from './ui/color-picker/color-picker.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
-  providers: [],
+  providers: [
+    // ...providers
+    ApiService, 
+    NoteService,
+    // StoreHelperService
+    ],
   bootstrap: [AppComponent]
 })
 

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NoteCardComponent, NoteCreatorComponent } from '../../ui';
+import { NoteService } from '../../services/note.service';
+import { Store } from '../../store';
+import 'rxjs/Rx';
+import { StoreHelperService } from '../../services/store-helper.service';
 
 @Component({
   selector: 'notes-container',
@@ -7,27 +11,33 @@ import { NoteCardComponent, NoteCreatorComponent } from '../../ui';
   	NoteCardComponent,
   	NoteCreatorComponent
   ],
+  providers: [NoteService, Store, StoreHelperService],
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent{
-	notes = [
-		{title: 'Chores', value: 'Dont forget to clean up', color: 'lightblue'},
-		{title: 'Food', value: 'make dinner', color: 'seagreen'},
-		{title: 'todo', value: 'think about birthday', color: 'coral'}
-	]
+export class NotesComponent implements OnDestroy{
+  notes = [];
 
-	onNoteChecked(note, idx) {
-		this.notes.splice(idx, 1)
-	}
+  constructor(private noteService: NoteService, private store:Store) {
+    	this.noteService.getNotes()
+    		.subscribe();
+	
+	this.store.changes.pluck('notes')
+		.subscribe((notes: any) =>  this.notes = notes);
+  }
 
-	// this matches the expression in notes.component.html where note-creator is used
-	onCreateNote(note) {
-		this.notes.push(note);
-	}
+  onCreateNote(note) {
+    	this.noteService.createNote(note)
+    		.subscribe();
+  }
 
-  constructor() { }
+  onNoteChecked(note) {
+	this.noteService.completeNote(note)
+    		.subscribe();
 
+  }
 
-
+  ngOnDestroy() {
+  	console.log('destroyed')
+  }
 }
