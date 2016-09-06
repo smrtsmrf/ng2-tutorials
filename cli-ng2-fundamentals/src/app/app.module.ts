@@ -12,9 +12,9 @@ import { AboutComponent } from './containers';
 import { AuthComponent } from './containers';
 import { ColorPickerComponent } from './ui';
 
-import { ApiService } from './services/api.service';
-import { NoteService } from './services/note.service';
-// import { StoreHelperService } from './services/store-helper.service';
+import { ApiService, NoteService, AuthService, StoreHelperService } from './services';
+import { Store } from './store'
+
 // import { providers } from './'
 // console.log(providers)
 // console.log([...providers])
@@ -42,7 +42,9 @@ import { routing } from './app.routing';
     // ...providers
     ApiService, 
     NoteService,
-    // StoreHelperService
+    AuthService,
+    StoreHelperService,
+    Store
     ],
   bootstrap: [AppComponent]
 })

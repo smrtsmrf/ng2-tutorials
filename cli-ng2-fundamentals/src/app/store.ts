@@ -9,7 +9,7 @@ export interface Note {
   id?: string | number,
   createdAt?: string,
   updatedAt?: string,
-  userId?: string
+  // userId?: string
 }
 
 export interface State {
@@ -25,10 +25,9 @@ const _store = new BehaviorSubject<State>(defaultState);
 @Injectable()
 export class Store {
   private _store = _store;
-  changes = this._store.asObservable().distinctUntilChanged().do(()=> console.log('changes'))
+  changes = this._store.asObservable().distinctUntilChanged()
 
   setState(state: State) {
-  	console.log('state set, ', state)
     this._store.next(state);
   }
 

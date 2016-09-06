@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NoteCardComponent, NoteCreatorComponent } from '../../ui';
-import { NoteService } from '../../services/note.service';
+import { NoteService, StoreHelperService } from '../../services';
 import { Store } from '../../store';
 import 'rxjs/Rx';
-import { StoreHelperService } from '../../services/store-helper.service';
 
 @Component({
   selector: 'notes-container',

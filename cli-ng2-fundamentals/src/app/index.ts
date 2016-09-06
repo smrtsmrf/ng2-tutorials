@@ -9,5 +9,6 @@ export const providers = [Store,
 	...mapValuesToArray(services)
 ];
 
+
 export * from './app.component';
 export * from './app.module';

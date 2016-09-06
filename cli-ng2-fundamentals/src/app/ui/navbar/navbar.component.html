@@ -5,7 +5,7 @@
 	<nav class="col-xs-2">
 		<div class="row middle-xs between-xs">
 			<span [routerLink]="['','about']"class="link">About</span>
-			<span class="link">signout</span>
+			<span (click)="signout()" class="link">signout</span>
 		</div>
 	</nav>
 </header>
