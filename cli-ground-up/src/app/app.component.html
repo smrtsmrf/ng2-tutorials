@@ -1,0 +1,16 @@
+<h1>
+  {{title}}
+</h1>
+<form (submit)="getData(artist)" #submitForm="ngForm">
+	<input [(ngModel)]="artist" name="artistName" >
+	<button type="submit" >Submit</button>
+</form>
+
+<div *ngFor="let thing of retrievedData">
+	<p><b>Artist Name: </b>{{thing.name}}</p>
+	<p><b>Popularity: </b>{{thing.popularity}}</p>
+</div>
+<app-sidebar></app-sidebar>
+<app-location-header></app-location-header>
+<app-schedule-header></app-schedule-header>
+<app-calendar-header></app-calendar-header>
